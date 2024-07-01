@@ -151,11 +151,12 @@ class CarRentalSystem {
             System.out.println("3. Exit");
             System.out.print("Enter your choice: ");
             int choice = sc.nextInt();
-           sc.hasNextLine();  // for consume one line
+            sc.hasNextLine();  // for consume one line
             if (choice == 1) {
                 System.out.println("\n== Rent a Car ==\n");
                 System.out.print("Enter your name: ");
-                String customerName = sc.nextLine();
+
+                String customerName = sc.next();
 
 
                 System.out.println("\n Available Cars:");
@@ -167,10 +168,10 @@ class CarRentalSystem {
                 }
 
                 System.out.println("Enter the car Id you want to rent: ");
-                String carId = sc.nextLine();
+                String carId = sc.next();
                 System.out.println("Enter the number of days for rental ");
                 int rentalDays = sc.nextInt();
-                sc.nextLine();
+//                sc.nextLine();
 
                 Customer newCustomer = new Customer(customerName, "CUS" + (customers.size() + 1));
                 addCustomer(newCustomer);
@@ -178,7 +179,7 @@ class CarRentalSystem {
                 Car selectedCar = null;
                 for (Car car : cars
                 ) {
-                    if (car.getCarId().equals(car)) {
+                    if (car.getCarId().equals(carId)) {
                         selectedCar = car;
                         break;
                     }
@@ -190,10 +191,10 @@ class CarRentalSystem {
                     System.out.println("Customer Name " + newCustomer.getName());
                     System.out.println("Car: " + selectedCar.getBrand() + " " + selectedCar.getModel());
                     System.out.println("Rental Days: " + rentalDays);
-                    System.out.println("Total Price : $%.2f%n" + totalPrice);
+                    System.out.printf("Total Price : $%.2f%n", totalPrice);
 
                     System.out.println("\nConfirm rental (Y/N): ");
-                    String confirm = sc.nextLine();
+                    String confirm = sc.next();
                     if (confirm.equalsIgnoreCase("y")) {
                         rentCar(selectedCar, newCustomer, rentalDays);
                         System.out.println("\nCar rented successfully");
@@ -207,7 +208,7 @@ class CarRentalSystem {
             } else if (choice == 2) {
                 System.out.println("\n== Return a Car ==\n");
                 System.out.print("Enter the car ID you want to return: ");
-                String carId = sc.nextLine();
+                String carId = sc.next();
 
                 Car carToReturn = null;
                 for (Car car : cars
